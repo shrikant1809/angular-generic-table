@@ -1,0 +1,38 @@
+<div class="table-container">
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Search" />
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <input
+            type="checkbox"
+            (change)="selectAllRows()"
+            [disabled]="paginatedUsers.length === 0"
+          />
+        </th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of paginatedUsers"
+        [class.selected]="isRowSelected(user)"
+      >
+        <td>
+          <input type="checkbox" (change)="toggleRowSelection(user)" />
+        </td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button (click)="deleteSelectedRows()">Delete Selected</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
